@@ -4,7 +4,7 @@ function a = __dleakyrelu(n)
    index_lesszero= find(n<0);
 
    a = ones(nRows,nColumns);
-   a(index_lesszero) = 0.1;
+   a(index_lesszero) = 0.01;
 
 
 endfunction
