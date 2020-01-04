@@ -145,6 +145,9 @@ function [Jj] = __calcjacobian(net,Im,Nn,Aa,vE)
         case "leakyrelu"
           n = leakyrelu(n);
           tildeSxTemp = __dleakyrelu(n);
+        case "leakybin"
+          n = leakybin(n);
+          tildeSxTemp = __dleakybin(n);
         otherwise	
           error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])
       endswitch
@@ -164,6 +167,9 @@ function [Jj] = __calcjacobian(net,Im,Nn,Aa,vE)
         case "leakyrelu"
           n = leakyrelu(n);
           tildeSbxTemp= __dleakyrelu(n);
+        case "leakybin"
+          n = leakybin(n);
+          tildeSbxTemp= __dleakybin(n);
         otherwise
           error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])
       endswitch
@@ -188,6 +194,9 @@ function [Jj] = __calcjacobian(net,Im,Nn,Aa,vE)
         case "leakyrelu"
           nx = leakyrelu(n);
           dFx= __dleakyrelu(n);
+        case "leakybin"
+          nx = leakybin(n);
+          dFx= __dleakybin(n);
 	otherwise     ######## new lines ...
 	  error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])######## new lines ...
        endswitch ############# new lines ....

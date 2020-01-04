@@ -87,6 +87,8 @@ function [perf,Ee,Aa,Nn] = __calcperf(net,xx,Im,Tt)
       Aa{iLayers,1} = logsig(Nn{iLayers,1});
     case "leakyrelu"
       Aa{iLayers,1} = leakyrelu(Nn{iLayers,1});
+    case "leakybin"
+      Aa{iLayers,1} = leakybin(Nn{iLayers,1});
     otherwise
       error(["Transfer function: " net.layers{iLayers}.transferFcn " doesn't exist!"])
     endswitch

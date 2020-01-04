@@ -75,6 +75,8 @@ function [netoutput] = sim(net,mInput)
         Aa{i,1} = logsig(Nn{i,1});
       case "leakyrelu"
         Aa{i,1} = leakyrelu(Nn{i,1});
+      case "leakybin"
+        Aa{i,1} = leakybin(Nn{i,1});
       otherwise
         error(["sim:Unknown transfer fucntion: " trf "!"]);
     endswitch
