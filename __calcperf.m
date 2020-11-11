@@ -107,6 +107,8 @@ function [perf,Ee,Aa,Nn] = __calcperf(net,xx,Im,Tt)
   switch(net.performFcn)
   case "mse"
     perf = __mse(Ee);
+  case "custom"
+    perf = __customErr(Tt{i,1}, Aa{i,1});
   otherwise
     error("for performance functions, only mse is currently valid!")
   endswitch
