@@ -1,4 +1,4 @@
-function a = __dleakyrelu(n)
+function a = __drelu(n)
 
    [nRows, nColumns] = size(n);
    index_lesszero= find(n<0);
