@@ -151,7 +151,7 @@ function [Jj] = __calcjacobian(net,Im,Nn,Aa,vE)
         case "relu"
           n = relu(n);
           tildeSxTemp = __drelu(n);
-        otherwise	
+        otherwise        
           error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])
       endswitch
       tildeSx{iLayers,1} = tildeSxTemp .* mIdentity;
@@ -189,27 +189,27 @@ function [Jj] = __calcjacobian(net,Im,Nn,Aa,vE)
           nx = radbas(n);
           dFx = __dradbas(nx);
         case "purelin"
-	  nx = purelin(n);
-	  dFx = __dpurelin(nx);
+          nx = purelin(n);
+          dFx = __dpurelin(nx);
         case "tansig"         ######## new lines ...
-	  nx = tansig(n);
-	  dFx = __dtansig(nx);
-	case "logsig"    ######## new lines ...
+          nx = tansig(n);
+          dFx = __dtansig(nx);
+        case "logsig"    ######## new lines ...
           nx = logsig(n);  ######## new lines ...
-	  dFx = __dlogsig(nx); ######## new lines ...
+          dFx = __dlogsig(nx); ######## new lines ...
         case "leakyrelu"
           nx = leakyrelu(n);
-          dFx= __dleakyrelu(n);
+          dFx= __dleakyrelu(nx);
         case "leakybin"
           nx = leakybin(n);
-          dFx= __dleakybin(n);
+          dFx= __dleakybin(nx);
         case "relu"
           nx = relu(n);
-          dFx= __drelu(n);
-	otherwise     ######## new lines ...
-	  error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])######## new lines ...
+          dFx= __drelu(nx);
+        otherwise     ######## new lines ...
+          error(["transfer function argument: " net.layers{iLayers}.transferFcn  " is not valid!"])######## new lines ...
        endswitch ############# new lines ....
-	  LWtranspose = net.LW{iLayers+1,iLayers};
+          LWtranspose = net.LW{iLayers+1,iLayers};
       if iLayers<(nLayers-1)
         mIdentity = -ones(net.layers{iLayers}.size,size(mIdentity,2));
       endif
