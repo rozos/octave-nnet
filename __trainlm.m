@@ -175,7 +175,12 @@ function [net] = __trainlm(net,Im,Pp,Tt,VV)
       dx = -((Jj' * Jj) + (muI*mu)) \ Jjve;
 
       ## add changes in x to actual x values (xx)
-      x1 = xx + dx;
+      if isfield(net.userdata, 'learningrate')
+        learningrate= net.userdata.learningrate;
+      else
+        learningrate= 1;
+      endif
+      x1 = xx + dx * learningrate;
       ## now add x1 to a new network to see if performance will be better
       net1 = __setx(net,x1);
       ## calc now new performance with the new net
